@@ -10,6 +10,9 @@ class Emulator {
   explicit Emulator(const Cartridge& cart);
 
   bool Run();
+
+ private:
+  const Cartridge cart_;
 };
 
 }  // namespace gamebun

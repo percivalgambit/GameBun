@@ -4,7 +4,7 @@
 
 namespace gamebun {
 
-Emulator::Emulator(const Cartridge& cart) {}
+Emulator::Emulator(const Cartridge& cart) : cart_(cart) {}
 
 bool Emulator::Run() { return true; }
 
