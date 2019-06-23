@@ -1,30 +1,18 @@
 #ifndef CARTRIDGE_H_
 #define CARTRIDGE_H_
 
+#include "memory.h"
+#include "memory_bank_controller.h"
 #include "util/byte_size.h"
 
 #include <array>
+#include <cstddef>
 #include <cstdint>
 #include <istream>
 #include <string_view>
 #include <vector>
 
 namespace gamebun {
-
-inline constexpr util::ByteSize kBankSize = 16 * util::kKilobytes;
-
-// TODO: Add MMM01
-// TODO: Add Pocket Camera
-// TODO: Add Bandai TAMA5
-// TODO: Add Hudson HuC-3
-// TODO: Add Hudson HuC-1
-enum class MemoryBankControllerType {
-  kNone,
-  kController1,
-  kController2,
-  kController3,
-  kController5,
-};
 
 struct CartridgeHardware {
   MemoryBankControllerType controller_type;
@@ -40,24 +28,20 @@ struct CartridgeHeader {
   bool super_gb;
   bool japanese_game;
   std::string_view title;
-  std::uint16_t license_code;
+  uint16_t license_code;
   CartridgeHardware hardware;
-  util::ByteSize rom_size;
-  util::ByteSize ram_size;
+  size_t rom_bank_num;
+  size_t ram_bank_num;
   uint8_t version;
   uint8_t header_checksum;
   uint16_t global_checksum;
 };
 
-class Cartridge {
- public:
+struct Cartridge {
   explicit Cartridge(std::istream *program);
 
- private:
-  void SetHardware(uint8_t byte);
-
-  CartridgeHeader header_;
-  std::vector<std::array<uint8_t, kBankSize.value()>> rom_banks_;
+  CartridgeHeader header;
+  std::vector<std::array<uint8_t, kRomBankSize.value()>> rom_banks;
 };
 
 }  // namespace gamebun

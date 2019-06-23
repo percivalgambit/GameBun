@@ -2,6 +2,7 @@
 #define EMULATOR_H_
 
 #include "cartridge.h"
+#include "memory.h"
 
 namespace gamebun {
 
@@ -12,7 +13,7 @@ class Emulator {
   bool Run();
 
  private:
-  const Cartridge cart_;
+  const Memory memory_;
 };
 
 }  // namespace gamebun
