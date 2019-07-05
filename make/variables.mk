@@ -21,7 +21,7 @@ WARNINGS_CXXFLAGS := \
   -Wmissing-include-dirs \
   -Wstrict-overflow=5 \
   -Wwrite-strings \
-  -Wshadow -Wredundant-decls \
+  -Wredundant-decls \
   -Wmissing-declarations \
   -Wpacked \
   -Wold-style-cast \

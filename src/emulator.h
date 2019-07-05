@@ -2,6 +2,7 @@
 #define EMULATOR_H_
 
 #include "cartridge.h"
+#include "cpu.h"
 #include "memory.h"
 
 namespace gamebun {
@@ -13,7 +14,8 @@ class Emulator {
   bool Run();
 
  private:
-  const Memory memory_;
+  Memory memory_;
+  Cpu cpu_;
 };
 
 }  // namespace gamebun
