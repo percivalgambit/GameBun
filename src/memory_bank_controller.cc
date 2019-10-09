@@ -5,7 +5,7 @@
 #include <memory>
 #include <variant>
 
-#include "address.h"
+#include "memory.h"
 #include "util/logging.h"
 
 namespace gamebun {

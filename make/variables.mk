@@ -2,13 +2,15 @@ $(call add_flag,extra_warnings)
 
 SHELL := bash
 CXX := g++
-CXXFLAGS := -std=c++17 -pedantic -Wall -Wextra -march=native -Isrc/ -pipe -MMD -MP -fdiagnostics-show-template-tree -fno-exceptions -fno-rtti
+CPPFLAGS := -D_FORTIFY_SOURCE=2
+CXXFLAGS := -std=c++17 -pedantic -Wall -Wextra -march=native -Isrc/ -pipe -MMD -MP -fdiagnostics-show-template-tree -fno-exceptions -fno-rtti -fno-canonical-system-headers -fstack-protector -fno-omit-frame-pointer
+LDFLAGS := -Wl,-z,relro,-z,now -no-canonical-prefixes
 
 release_CPPFLAGS := -DNDEBUG
-release_CXXFLAGS := -O3 -flto -fno-fat-lto-objects
-release_LDFLAGS := -flto -fno-fat-lto-objects
+release_CXXFLAGS := -O3 -flto -fno-fat-lto-objects -ffunction-sections -fdata-sections
+release_LDFLAGS := -Wl,--gc-sections -flto -fno-fat-lto-objects
 
-debug_CPPFLAGS := -DDEBUG
+debug_CPPFLAGS := -DDEBUG -D_GLIBCXX_DEBUG
 debug_CXXFLAGS := -Og -ggdb3 -Werror
 debug_LDFLAGS :=
 

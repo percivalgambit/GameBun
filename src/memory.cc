@@ -5,7 +5,6 @@
 #include <cstdint>
 #include <vector>
 
-#include "address.h"
 #include "memory_bank_controller.h"
 #include "util/logging.h"
 

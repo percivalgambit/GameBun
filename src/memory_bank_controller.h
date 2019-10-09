@@ -1,27 +1,14 @@
 #ifndef MEMORY_BANK_CONTROLLER_H_
 #define MEMORY_BANK_CONTROLLER_H_
 
-#include "address.h"
-
 #include <cstddef>
 #include <cstdint>
 #include <memory>
 #include <variant>
 
-namespace gamebun {
+#include "memory.h"
 
-// TODO: Add MMM01
-// TODO: Add Pocket Camera
-// TODO: Add Bandai TAMA5
-// TODO: Add Hudson HuC-3
-// TODO: Add Hudson HuC-1
-enum class MemoryBankControllerType {
-  kNone,
-  kController1,
-  kController2,
-  kController3,
-  kController5,
-};
+namespace gamebun {
 
 class MemoryBankController {
  public:

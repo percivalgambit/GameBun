@@ -3,11 +3,9 @@
 
 #include "instruction_operand.h"
 
-#include <array>
-#include <cstdint>
-
 namespace gamebun {
 
+// TODO: Add CB prefix instructions
 enum class Opcode {
   LD,
   LDI,
@@ -15,59 +13,70 @@ enum class Opcode {
   LDH,
   LDHL,
 
+  PUSH,
+  POP,
+
   ADD,
   ADC,
   SUB,
   SBC,
   AND,
-  XOR,
   OR,
+  XOR,
   CP,
 
   INC,
   DEC,
 
-  RLCA,
-  RRCA,
-  RLA,
-  RRA,
+  SWAP,
   DAA,
   CPL,
-  SCF,
   CCF,
+  SCF,
 
-  JR,
-  JP,
-
-  POP,
-  PUSH,
-
-  RET,
-  RETI,
-  RST,
-  CALL,
+  NOP,
+  HALT,
+  STOP,
 
   DI,
   EI,
 
-  NOP,
-  STOP,
-  HALT,
+  RLCA,
+  RLA,
+  RRCA,
+  RRA,
+  RLC,
+  RL,
+  RRC,
+  RR,
+  SLA,
+  SRA,
+  SRL,
+
+  BIT,
+  SET,
+  RES,
+
+  JP,
+  JR,
+
+  CALL,
+  RST,
+  RET,
+  RETI,
 };
 
-class Instruction {
- public:
-  static Instruction Decode(const std::array<uint8_t, 3>& instruction_bytes);
+struct Instruction {
+  constexpr Instruction(Opcode op) : op(op) {}
+  constexpr Instruction(Opcode op, InstructionOperand operand1)
+      : op(op), operand1(operand1) {}
+  constexpr Instruction(Opcode op, InstructionOperand operand1,
+                        InstructionOperand operand2)
+      : op(op), operand1(operand1), operand2(operand2) {}
 
- private:
-  Instruction(Opcode op);
-  Instruction(Opcode op, InstructionOperand operand1);
-  Instruction(Opcode op, InstructionOperand operand1,
-              InstructionOperand operand2);
-
-  Opcode op_;
-  InstructionOperand operand1_;
-  InstructionOperand operand2_;
+  Opcode op;
+  InstructionOperand operand1;
+  InstructionOperand operand2;
 };
 
 }  // namespace gamebun

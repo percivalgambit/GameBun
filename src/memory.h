@@ -7,14 +7,30 @@
 #include <memory>
 #include <vector>
 
-#include "address.h"
-#include "memory_bank_controller.h"
 #include "util/byte_size.h"
+#include "util/strong_int.h"
 
 namespace gamebun {
 
 inline constexpr util::ByteSize kRomBankSize = 16 * util::kKilobytes;
 inline constexpr util::ByteSize kRamBankSize = 8 * util::kKilobytes;
+
+DEFINE_STRONG_INT_TYPE(Address, uint16_t)
+
+class MemoryBankController;
+
+// TODO: Add MMM01
+// TODO: Add Pocket Camera
+// TODO: Add Bandai TAMA5
+// TODO: Add Hudson HuC-3
+// TODO: Add Hudson HuC-1
+enum class MemoryBankControllerType {
+  kNone,
+  kController1,
+  kController2,
+  kController3,
+  kController5,
+};
 
 class Memory {
  public:
