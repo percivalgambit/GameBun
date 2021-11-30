@@ -38,7 +38,7 @@ struct CartridgeHeader {
 };
 
 struct Cartridge {
-  explicit Cartridge(std::istream *program);
+  explicit Cartridge(std::istream* program);
 
   CartridgeHeader header;
   std::vector<std::array<uint8_t, kRomBankSize.value()>> rom_banks;

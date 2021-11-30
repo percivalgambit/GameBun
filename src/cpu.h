@@ -16,6 +16,9 @@ class Cpu {
 
   void Step();
 
+  Cpu(const Cpu&) = delete;
+  Cpu& operator=(const Cpu&) = delete;
+
  private:
   Instruction FetchInstruction();
   void ExecuteInstruction(const Instruction& instruction);

@@ -49,6 +49,9 @@ class Registers {
   uint16_t PC() const { return pc_; }
   uint16_t& PC() { return pc_; }
 
+  Registers(const Registers&) = delete;
+  Registers& operator=(const Registers&) = delete;
+
  private:
   struct RegisterPair {
     using Parts = struct {

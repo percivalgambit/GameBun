@@ -13,6 +13,9 @@ class Emulator {
 
   bool Run();
 
+  Emulator(const Emulator&) = delete;
+  Emulator& operator=(const Emulator&) = delete;
+
  private:
   Memory memory_;
   Cpu cpu_;

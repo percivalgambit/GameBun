@@ -41,6 +41,9 @@ class Memory {
   uint8_t Read(Address address) const;
   void Write(Address address, uint8_t value);
 
+  Memory(const Memory&) = delete;
+  Memory& operator=(const Memory&) = delete;
+
  private:
   const std::vector<std::array<uint8_t, kRomBankSize.value()>> rom_banks_;
   std::vector<std::array<uint8_t, kRamBankSize.value()>> ram_banks_;
